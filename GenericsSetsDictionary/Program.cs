@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GenericsSetsDictionary.Entities;
-using GenericsSetsDictionary.Services;
 using System.Globalization;
 
 namespace GenericsSetsDictionary
@@ -13,27 +12,13 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            List<Product> list = new List<Product>();
+            Client a = new Client() { Name = "Maria", Email = "maria@gmail.com"};
+            Client b = new Client() { Name = "Alex", Email = "alex@gmail.com"};
 
-            Console.Write("Enter N: ");
-            int n = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
-            {
-                string[] vect = Console.ReadLine().Split(',');
-                string name = vect[0];
-                double price = double.Parse(vect[1], CultureInfo.InvariantCulture);
-                list.Add(new Product(name, price));
-            }
-
-            CalculationService calculationService = new CalculationService();
-
-            Product max = calculationService.Max(list);
-
-            Console.WriteLine();
-
-            Console.WriteLine("Most Expensive:");
-            Console.WriteLine(max);
+            Console.WriteLine(a.Equals(b));
+            Console.WriteLine(a  == b); //ele ta comparando a referencia do ponteiro de memoria do objeto, ou seja, se eles "apontam" para o mesmo objeto, não somente se eles são iguais.
+            Console.WriteLine(a.GetHashCode());
+            Console.WriteLine(b.GetHashCode());
         }
     }
 }
