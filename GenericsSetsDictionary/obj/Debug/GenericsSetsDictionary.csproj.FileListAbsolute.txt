@@ -1,0 +1,6 @@
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\bin\Debug\GenericsSetsDictionary.exe.config
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\bin\Debug\GenericsSetsDictionary.exe
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\bin\Debug\GenericsSetsDictionary.pdb
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\obj\Debug\GenericsSetsDictionary.csprojResolveAssemblyReference.cache
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\obj\Debug\GenericsSetsDictionary.exe
+c:\users\brssantos\documents\visual studio 2013\Projects\GenericsSetsDictionary\GenericsSetsDictionary\obj\Debug\GenericsSetsDictionary.pdb
