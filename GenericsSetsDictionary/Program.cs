@@ -12,13 +12,18 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            Client a = new Client() { Name = "Maria", Email = "maria@gmail.com"};
-            Client b = new Client() { Name = "Alex", Email = "alex@gmail.com"};
+            HashSet<string> set = new HashSet<string>();
 
-            Console.WriteLine(a.Equals(b));
-            Console.WriteLine(a  == b); //ele ta comparando a referencia do ponteiro de memoria do objeto, ou seja, se eles "apontam" para o mesmo objeto, não somente se eles são iguais.
-            Console.WriteLine(a.GetHashCode());
-            Console.WriteLine(b.GetHashCode());
+            set.Add("TV");
+            set.Add("Notebook");
+            set.Add("Tablet");
+
+            Console.WriteLine(set.Contains("TV")); // vendo se tem algo dentro do HashSet, se tiver ele retorna True, caso contrário False
+
+            foreach (String p in set)
+            {
+                Console.WriteLine(p);
+            }
         }
     }
 }
