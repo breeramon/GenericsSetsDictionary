@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenericsSetsDictionary.Entities;
+using GenericsSetsDictionary.Services;
+using System.Globalization;
 
 namespace GenericsSetsDictionary
 {
@@ -10,36 +13,27 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            PrintService<string> printService = new PrintService<string>();
+            List<Product> list = new List<Product>();
 
-            Console.Write("How many values? ");
+            Console.Write("Enter N: ");
             int n = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < n; i++)
             {
-                string x = Console.ReadLine();
-                printService.AddValue(x);
+                string[] vect = Console.ReadLine().Split(',');
+                string name = vect[0];
+                double price = double.Parse(vect[1], CultureInfo.InvariantCulture);
+                list.Add(new Product(name, price));
             }
 
-            printService.Print();
-            Console.WriteLine("First: " + printService.First());
+            CalculationService calculationService = new CalculationService();
 
-            //A IMPLEMENTAÇÃO DE CIMA É COM STRINGS E A DE BAIXO COM INTEIROS
+            Product max = calculationService.Max(list);
 
-            /*PrintService<int> printService = new PrintService<int>();
+            Console.WriteLine();
 
-            Console.Write("How many values? ");
-            int n = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
-            {
-                int x = int.Parse(Console.ReadLine());
-                printService.AddValue(x);
-            }
-
-            printService.Print();
-            Console.WriteLine("First: " + printService.First());
-            */
+            Console.WriteLine("Most Expensive:");
+            Console.WriteLine(max);
         }
     }
 }
