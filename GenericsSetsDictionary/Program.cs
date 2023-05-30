@@ -12,48 +12,34 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            HashSet<int> courseA = new HashSet<int>();
-            HashSet<int> courseB = new HashSet<int>();
-            HashSet<int> courseC = new HashSet<int>();
-            
-            Console.Write("How many students for course A? ");
-            int n = int.Parse(Console.ReadLine());
+            Dictionary<string, string> cookies = new Dictionary<string, string>();
 
-            for (int i = 1; i <= n; i++)
+            cookies["user"] = "maria";
+            cookies["email"] = "maria@gmail.com";
+            cookies["phone"] = "99771122";
+            cookies["phone"] = "99771133";
+
+            Console.WriteLine(cookies["email"]);
+            cookies.Remove("email");
+
+            Console.WriteLine("Phone number: " + cookies["phone"]);
+
+            if (cookies.ContainsKey("email"))
             {
-                Console.Write("Student Enrollment {0}: ", i);
-                int codigo = int.Parse(Console.ReadLine());
-                courseA.Add(codigo);
+                Console.WriteLine("Email: " + cookies["email"]);
             }
-            Console.WriteLine();
-
-            Console.Write("How many students for a course B? ");
-            int n1 = int.Parse(Console.ReadLine());
-
-            for (int i = 1; i <= n1; i++)
+            else
             {
-                Console.Write("Student Enrollment {0}: ", i);
-                int codigo = int.Parse(Console.ReadLine());
-                courseB.Add(codigo);
+                Console.WriteLine("There is not 'email' key");
             }
-            Console.WriteLine();
 
-            Console.Write("How many students for a course C? ");
-            int n2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Size: " + cookies.Count);
+            Console.WriteLine("ALL COOKIES:");
 
-            for (int i = 1; i <= n2; i++)
+            foreach (KeyValuePair<string, string> item in cookies)
             {
-                Console.Write("Student Enrollment {0}: ", i);
-                int codigo = int.Parse(Console.ReadLine());
-                courseC.Add(codigo);
-            }
-            Console.WriteLine();
-
-            HashSet<int> all = new HashSet<int>(courseA);
-            all.UnionWith(courseB);
-            all.UnionWith(courseC);
-
-            Console.WriteLine("Total students: " + all.Count);
+                Console.WriteLine(item.Key + ": " + item.Value);
+            }
         }   
     }
 }
