@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GenericsSetsDictionary.Entities;
 using System.Globalization;
 using System.IO;
 
@@ -13,30 +12,48 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            HashSet<LogRecord> set = new HashSet<LogRecord>();
+            HashSet<int> courseA = new HashSet<int>();
+            HashSet<int> courseB = new HashSet<int>();
+            HashSet<int> courseC = new HashSet<int>();
             
-            Console.Write("Enter file full path: ");
-            string path = Console.ReadLine();
+            Console.Write("How many students for course A? ");
+            int n = int.Parse(Console.ReadLine());
 
-            try
+            for (int i = 1; i <= n; i++)
             {
-                using (StreamReader sr = File.OpenText(path))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string[] line = sr.ReadLine().Split();
-                        string name = line[0];
-                        DateTime instant = DateTime.Parse(line[1]);
-                        set.Add(new LogRecord(name, instant));
-                    }
-                    Console.WriteLine("Total Users: " + set.Count);
-                }
+                Console.Write("Student Enrollment {0}: ", i);
+                int codigo = int.Parse(Console.ReadLine());
+                courseA.Add(codigo);
             }
-            catch (IOException e)
-            {
+            Console.WriteLine();
 
-                Console.WriteLine(e.Message);
+            Console.Write("How many students for a course B? ");
+            int n1 = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= n1; i++)
+            {
+                Console.Write("Student Enrollment {0}: ", i);
+                int codigo = int.Parse(Console.ReadLine());
+                courseB.Add(codigo);
             }
+            Console.WriteLine();
+
+            Console.Write("How many students for a course C? ");
+            int n2 = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= n2; i++)
+            {
+                Console.Write("Student Enrollment {0}: ", i);
+                int codigo = int.Parse(Console.ReadLine());
+                courseC.Add(codigo);
+            }
+            Console.WriteLine();
+
+            HashSet<int> all = new HashSet<int>(courseA);
+            all.UnionWith(courseB);
+            all.UnionWith(courseC);
+
+            Console.WriteLine("Total students: " + all.Count);
         }   
     }
 }
