@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GenericsSetsDictionary.Entities;
 using System.Globalization;
+using System.IO;
 
 namespace GenericsSetsDictionary
 {
@@ -12,19 +13,30 @@ namespace GenericsSetsDictionary
     {
         static void Main(string[] args)
         {
-            HashSet<Product> a = new HashSet<Product>();
-            a.Add(new Product("TV", 900.0));
-            a.Add(new Product("Notebook", 1200.0));
+            HashSet<LogRecord> set = new HashSet<LogRecord>();
+            
+            Console.Write("Enter file full path: ");
+            string path = Console.ReadLine();
 
-            HashSet<Point> b = new HashSet<Point>();
-            b.Add(new Point(3, 4));
-            b.Add(new Point(5, 10));
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] line = sr.ReadLine().Split();
+                        string name = line[0];
+                        DateTime instant = DateTime.Parse(line[1]);
+                        set.Add(new LogRecord(name, instant));
+                    }
+                    Console.WriteLine("Total Users: " + set.Count);
+                }
+            }
+            catch (IOException e)
+            {
 
-            Product prod = new Product("Notebook", 1200.0);
-            Console.WriteLine(a.Contains(prod));
-
-            Point point = new Point(5, 10);
-            Console.WriteLine(b.Contains(point));
+                Console.WriteLine(e.Message);
+            }
         }   
     }
 }
