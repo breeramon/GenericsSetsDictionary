@@ -11,35 +11,39 @@ namespace GenericsSetsDictionary
     class Program
     {
         static void Main(string[] args)
-        {
-            Dictionary<string, string> cookies = new Dictionary<string, string>();
+        {            Console.Write("Enter file full path: ");
+            string path = Console.ReadLine();
 
-            cookies["user"] = "maria";
-            cookies["email"] = "maria@gmail.com";
-            cookies["phone"] = "99771122";
-            cookies["phone"] = "99771133";
-
-            Console.WriteLine(cookies["email"]);
-            cookies.Remove("email");
-
-            Console.WriteLine("Phone number: " + cookies["phone"]);
-
-            if (cookies.ContainsKey("email"))
+            try
             {
-                Console.WriteLine("Email: " + cookies["email"]);
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    Dictionary<string, int> Votos = new Dictionary<string, int>();
+                    
+                    while (!sr.EndOfStream)
+                    {
+                        string[] votingRecord = sr.ReadLine().Split(',');
+                        string candidato = votingRecord[0];
+                        int votosQuantity = int.Parse(votingRecord[1]);
+
+                        if (Votos.ContainsKey(candidato))
+                        {
+                            Votos[candidato] += votosQuantity;
+                        }
+                        else
+                        {
+                            Votos[candidato] = votosQuantity;
+                        }
+                    }
+                    foreach (var item in Votos)
+                    {
+                        Console.WriteLine(item.Key + "," + item.Value);
+                    }
+                }
             }
-            else
+            catch (IOException e)
             {
-                Console.WriteLine("There is not 'email' key");
-            }
-
-            Console.WriteLine("Size: " + cookies.Count);
-            Console.WriteLine("ALL COOKIES:");
-
-            foreach (KeyValuePair<string, string> item in cookies)
-            {
-                Console.WriteLine(item.Key + ": " + item.Value);
-            }
+                Console.WriteLine("An error ocurred");                Console.WriteLine(e.Message);            }
         }   
     }
 }
